@@ -77,7 +77,7 @@ module.exports.signIn = async (req, res, next) => {
         "Cet émail n'existe pas dans notre base de donnée, Inscrivez-vous ! ",
     });
   }
-  t;
+
   // comparer le mot de la bd au mot de passe saisie lors de la connexion
   const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
   if (!isPasswordCorrect) {
