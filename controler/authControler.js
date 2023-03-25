@@ -87,28 +87,6 @@ module.exports.signIn = async (req, res, next) => {
     });
   }
 
-  // Si le compte n'est pas encore approuvé, on lui renvoie un autre mail de confirmation
-  if (!existingUser.verified) {
-    const url = `${process.env.CLIENT_URL}/verify/${existingUser.userId}/activate/${existingUser.token}`;
-    await sendEmail(
-      existingUser.email,
-      "Terminez votre inscription",
-      `
-       <div style="background-color: #FFFFFF;margin:auto;font-family:'Montserrat', sans-serif;@import url('https://fonts.cdnfonts.com/css/montserrat');max-height: 400px;width: 100%;text-align: center;"  class="container">
-    <h1>Confirmez votre adresse email</h1>
-    <p>Appuyez sur le bouton ci-dessous pour confirmer votre adresse e-mail. Si vous n'avez pas créé de compte avec , vous pouvez supprimer cet e-mail en toute sécurité.</p>
-    <p>Ce lien <b> expire dans un délai de 1h</b></p>
-    <button style="background-color: #1A82E2;border:none;padding:15px;border-radius: 10px;cursor:pointer;">  <a style="color: black;" href=${url}> Cliquez sur ce lien pour finaliser l'inscription</a></button>
-    <p>Si cela ne fonctionne pas, copiez et collez le lien suivant dans votre navigateur : ${url}</p> 
-
-  </div> 
-      `
-    );
-
-    return res.status(400).json({
-      message: "Un nouvel email vous a été renvoyé, vérifiez votre boîte mail",
-    });
-  }
   const token = jwt.sign({ id: existingUser._id }, process.env.TOKEN_SECRETE, {
     expiresIn: "3d",
   });

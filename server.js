@@ -65,6 +65,12 @@ app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
+app.get("/register", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+});
+app.get("/login", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+});
 app.get("/profil", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
@@ -72,6 +78,9 @@ app.get("/edit_profil", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 app.get("/condition_generale", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+});
+app.get("/forget_password", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 app.get("/verify/:id/activate/:token", function (req, res) {
